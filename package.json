@@ -2,8 +2,12 @@
   "name": "tic-tac-toe",
   "version": "1.0.0",
   "description": "Especialização em Desenvolvimento Ágil de Software",
-  "main": "index.js",
+  "main": "bin/index.js",
+  "bin": {  
+    "tictactoe": "./bin/index.js"  
+  },
   "scripts": {
+    "tictactoe": "./bin/index.js",
     "test": "jest"
   },
   "repository": {
