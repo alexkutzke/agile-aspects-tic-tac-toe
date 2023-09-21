@@ -3,9 +3,15 @@
   "version": "1.0.0",
   "description": "Especialização em Desenvolvimento Ágil de Software",
   "main": "bin/index.js",
-  "bin": {  
-    "tictactoe": "./bin/index.js"  
+  "bin": {
+    "tictactoe": "./bin/index.js"
   },
+
+
+    "babel": {
+      "presets": ["@babel/preset-env"]
+    },  
+  
   "scripts": {
     "tictactoe": "./bin/index.js",
     "test": "jest"
@@ -21,7 +27,9 @@
   },
   "homepage": "https://github.com/alexkutzke/agile-aspects-tic-tac-toe#readme",
   "devDependencies": {
-    "@babel/preset-env": "^7.15.0",
+    "@babel/core": "^7.22.20",
+    "@babel/preset-env": "^7.22.20",
+    "babel-jest": "^29.7.0",
     "jest": "^27.0.6"
   },
   "jest": {
@@ -31,3 +39,7 @@
   },
   "type": "module"
 }
+
+
+
+
