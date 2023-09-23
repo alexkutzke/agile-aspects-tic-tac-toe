@@ -44,55 +44,6 @@ class JogoDaVelha {
       // Se a linha ou a coluna estiverem fora do tabuleiro ou já tiver uma jogada
       return false;
     }
-
-    
-    
-    jogadaValida(linha, coluna) {
-      // Verifique se a linha e a coluna estão dentro dos limites do tabuleiro
-      if (linha >= 0 && linha < 3 && coluna >= 0 && coluna < 3) {
-        // Verifique se a célula está vazia (não foi jogada ainda)
-        if (this.tabuleiro[linha][coluna] === "") {
-          return true;
-        }
-        
-        else {
-          console.log("Essa célula já está ocupada.");
-        }
-      } else {
-        console.log("Coordenadas fora dos limites do tabuleiro.");
-      }
-      return false; // A jogada é inválida
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     verificarVencedor(jogador) {
     // Verificar linhas
