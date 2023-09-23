@@ -1,25 +1,168 @@
 import JogoDaVelha from "./JogoDaVelha";
 
 describe('Jogo da velha', () => {
+
   describe('Verificar Jogo Novo', () => {
     test('Testes para ver se o Jogo está sendo criado', () => {
       const jogo = new JogoDaVelha();
-      console.log(`Jogador Atual: ${jogo.jogadorAtual}`);
-      console.log(jogo.tabuleiro)
-      expect(jogo.tabuleiro).toBe([
-        ['', '', ''], ['', '', ''], ['', '', '']]);
+      expect(jogo.tabuleiro).toStrictEqual([["", "", ""], ["", "", ""], ["", "", ""]]);
     });
-
-    test('Testes para ver se jogadas são feitas', () => {
+    test('Testes para ver se jogadas são feitas [0][0]', () => {
       const jogo = new JogoDaVelha();
       jogo.reiniciarJogo();
-      jogo.fazerJogada(0, 0); // "X"
+      jogo.fazerJogada(0, 0); // 'X'
       expect(jogo.tabuleiro[0][0]).toBe("X");
     });
+    test('Testes para ver se jogadas são feitas [1][1]', () => {
+      const jogo = new JogoDaVelha();
+      jogo.reiniciarJogo();
+      jogo.fazerJogada(1, 1); // 'X'
+      expect(jogo.tabuleiro[1][1]).toBe("X");
+    });
+    test('Testes para ver se jogadas são feitas [2][2]', () => {
+      const jogo = new JogoDaVelha();
+      jogo.reiniciarJogo();
+      jogo.fazerJogada(2, 2); // 'X'
+      expect(jogo.tabuleiro[2][2]).toBe("X");
+    });
+  });
 
+  describe('Verificar se jogadas são feitas alternando o jogador', () => {
+    test('Testes para ver está alterando', () => {
+      const jogo = new JogoDaVelha();
+      jogo.reiniciarJogo();
+      jogo.fazerJogada(0, 0); // 'X'
+      jogo.fazerJogada(0, 1); // 'O'
+      jogo.fazerJogada(1, 1); // 'X'
+      jogo.fazerJogada(0, 2); // 'O'
+      jogo.fazerJogada(2, 2); // 'X'
+      expect(jogo.tabuleiro[0][0]).toBe("X");
+      expect(jogo.tabuleiro[0][1]).toBe("O");
+      expect(jogo.tabuleiro[1][1]).toBe("X");
+      expect(jogo.tabuleiro[0][2]).toBe("O");
+      expect(jogo.tabuleiro[2][2]).toBe("X");
+    });
+  });
+
+  describe('Verificar se jogadas são válidas', () => {
+    test('Jogadas inválida - Fora do array', () => {
+      const jogo = new JogoDaVelha();
+      jogo.reiniciarJogo();
+      jogo.fazerJogada(5, 5); // 'X'
+      expect(jogo.jogadaValida()).toBe(false);
+    });
+
+    test('Jogadas inválida - Mesma posição', () => {
+      const jogo = new JogoDaVelha();
+      jogo.reiniciarJogo();
+      jogo.fazerJogada(0, 0); // 'X'
+      jogo.fazerJogada(0, 0); // 'O'
+      expect(jogo.jogadaValida()).toBe(false);
+    });
+  });
+
+  describe('Verificar vencedor', () => {
+    //Linhas
+    test('Verificar vitória na linha 0', () => {
+      const jogo = new JogoDaVelha();
+      jogo.reiniciarJogo();
+      jogo.fazerJogada(0, 0); // 'X'
+      jogo.fazerJogada(1, 0); // 'O'
+      jogo.fazerJogada(0, 1); // 'X'
+      jogo.fazerJogada(1, 1); // 'O'
+      jogo.fazerJogada(0, 2); // 'X' (vitória na linha 0)
+      // console.log(jogo.tabuleiro)
+      expect(jogo.verificarVencedor("X")).toBe(true);
+    });
+
+    test('Verificar vitória na linha 1', () => {
+      const jogo = new JogoDaVelha();
+      jogo.reiniciarJogo();
+      jogo.fazerJogada(1, 0); // 'X'
+      jogo.fazerJogada(0, 0); // 'O'
+      jogo.fazerJogada(1, 1); // 'X'
+      jogo.fazerJogada(0, 1); // 'O'
+      jogo.fazerJogada(1, 2); // 'X' (vitória na linha 1)
+      // console.log(jogo.tabuleiro)
+      expect(jogo.verificarVencedor("X")).toBe(true);
+    });
+
+    test('Verificar vitória na linha 2', () => {
+      const jogo = new JogoDaVelha();
+      jogo.reiniciarJogo();
+      jogo.fazerJogada(2, 0); // 'X'
+      jogo.fazerJogada(0, 0); // 'O'
+      jogo.fazerJogada(2, 1); // 'X'
+      jogo.fazerJogada(0, 1); // 'O'
+      jogo.fazerJogada(2, 2); // 'X' (vitória na linha 2)
+      // console.log(jogo.tabuleiro)
+      expect(jogo.verificarVencedor("X")).toBe(true);
+    });
+
+    //Colunas
+    test('Verificar vitória na coluna 0', () => {
+      const jogo = new JogoDaVelha();
+      jogo.reiniciarJogo();
+      jogo.fazerJogada(0, 0); // 'X'
+      jogo.fazerJogada(0, 1); // 'O'
+      jogo.fazerJogada(1, 0); // 'X'
+      jogo.fazerJogada(1, 1); // 'O'
+      jogo.fazerJogada(2, 0); // 'X' (vitória na coluna 2)
+      // console.log(jogo.tabuleiro)
+      expect(jogo.verificarVencedor("X")).toBe(true);
+    });
+
+    test('Verificar vitória na coluna 1', () => {
+      const jogo = new JogoDaVelha();
+      jogo.reiniciarJogo();
+      jogo.fazerJogada(0, 1); // 'X'
+      jogo.fazerJogada(0, 0); // 'O'
+      jogo.fazerJogada(1, 1); // 'X'
+      jogo.fazerJogada(2, 2); // 'O'
+      jogo.fazerJogada(2, 1); // 'X' (vitória na coluna 2)
+      // console.log(jogo.tabuleiro)
+      expect(jogo.verificarVencedor("X")).toBe(true);
+    });
+
+    test('Verificar vitória na coluna 2', () => {
+      const jogo = new JogoDaVelha();
+      jogo.reiniciarJogo();
+      jogo.fazerJogada(0, 2); // 'X'
+      jogo.fazerJogada(0, 0); // 'O'
+      jogo.fazerJogada(1, 2); // 'X'
+      jogo.fazerJogada(0, 1); // 'O'
+      jogo.fazerJogada(2, 2); // 'X' (vitória na coluna 2)
+      // console.log(jogo.tabuleiro)
+      expect(jogo.verificarVencedor("X")).toBe(true);
+    });
+
+    //Diagonais
+    test('Verificar vitória na diagonal 1', () => {
+      const jogo = new JogoDaVelha();
+      jogo.reiniciarJogo();
+      jogo.fazerJogada(0, 0); // 'X'
+      jogo.fazerJogada(0, 1); // 'O'
+      jogo.fazerJogada(1, 1); // 'X'
+      jogo.fazerJogada(0, 2); // 'O'
+      jogo.fazerJogada(2, 2); // 'X' (vitória na diagonal 1)
+      // console.log(jogo.tabuleiro)
+      expect(jogo.verificarVencedor("X")).toBe(true);
+    });
+
+    test('Verificar vitória na diagonal 2', () => {
+      const jogo = new JogoDaVelha();
+      jogo.reiniciarJogo();
+      jogo.fazerJogada(2, 0); // 'X'
+      jogo.fazerJogada(0, 0); // 'O'
+      jogo.fazerJogada(1, 1); // 'X'
+      jogo.fazerJogada(0, 1); // 'O'
+      jogo.fazerJogada(0, 2); // 'X' (vitória na diagonal 2)
+      // console.log(jogo.tabuleiro)
+      expect(jogo.verificarVencedor('X')).toBe(true);
+    });
   });
 });
-    
+
 //     test('Testes para o método de verificar vencedor linha 1', () => {
 //       const jogo = new JogoDaVelha();
 //       jogo.reiniciarJogo();
@@ -41,41 +184,14 @@ describe('Jogo da velha', () => {
 
 
 
-// test('Verificar vitória na diagonal 1', () => {
-//   reiniciarJogo();
-//   fazerJogada(0, 0); // 'X'
-//   fazerJogada(0, 1); // 'O'
-//   fazerJogada(1, 1); // 'X'
-//   fazerJogada(0, 2); // 'O'
-//   fazerJogada(2, 2); // 'X' (vitória na diagonal 1)
-//   console.log(tabuleiro)
-//   expect(verificarVencedor("X")).toBe(true);
-// });
 
-// test('Verificar vitória na diagonal 2', () => {
-//   reiniciarJogo();
-//   fazerJogada(2, 0); // 'X'
-//   fazerJogada(0, 0); // 'O'
-//   fazerJogada(1, 1); // 'X'
-//   fazerJogada(0, 1); // 'O'
-//   fazerJogada(0, 2); // 'X' (vitória na diagonal 2)
-//   expect(verificarVencedor('X')).toBe(true);
-// });
 
-// test('Verificar vitória na 1ª linha', () => {
-  //   reiniciarJogo();
-  //   fazerJogada(0, 0); // 'X'
-  //   fazerJogada(1, 0); // 'O'
-  //   fazerJogada(0, 1); // 'X'
-  //   fazerJogada(1, 1); // 'O'
-  //   fazerJogada(0, 2); // 'X' (vitória na linha 0)
-  //   expect(verificarVencedor('X')).toBe(true);
-  // });
+
 
 // test('Verificar vitória na 2ª linha', () => {
-  //   reiniciarJogo();
-  //   fazerJogada(1, 0); // 'X'
-  //   fazerJogada(0, 0); // 'O'
+//   reiniciarJogo();
+//   fazerJogada(1, 0); // 'X'
+//   fazerJogada(0, 0); // 'O'
 //   fazerJogada(1, 1); // 'X'
 //   fazerJogada(0, 1); // 'O'
 //   fazerJogada(1, 2); // 'X' (vitória na linha 1)
