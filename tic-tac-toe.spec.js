@@ -111,7 +111,112 @@ describe('Tic-Tac-Toe Game', () => {
                     expect(closeRLMock).toHaveBeenCalled();
 
                     // Verifique se a mensagem de vitória para o jogador X foi impressa no console
-                    expect(console.log).toHaveBeenCalledWith('\n-> Parabéns, Jogador X! Você venceu!\n');
+                    expect(console.log).toHaveBeenCalledWith('\n-> Parabéns, Jogador X! Você venceu com uma linha na horizontal!\n');
+
+                    done();
+                });
+
+                getPlayerMove(board);
+            });
+
+        })
+
+        describe('Player X wins with diagonal line', () => {
+
+            it('simulates user input and check for diagonal X victory', (done) => {
+                // Defina um mock para askQuestion para simular a entrada do usuário
+                const askQuestionMock = jest.spyOn(rlWrapper, 'askQuestion');
+                let userInputCounter = 0;
+
+                askQuestionMock.mockImplementation((question, callback) => {
+                    // Simule as entradas do usuário: 1 (X), 4 (O), 5 (X), 7 (O), 9 (X)
+                    const userInput = ['1', '4', '5', '7', '9'];
+
+                    // Use o userInputCounter para obter a próxima entrada do usuário
+                    const userResponse = userInput[userInputCounter];
+                    userInputCounter++;
+
+                    callback(userResponse);
+                });
+
+                // Defina um mock para closeRL para simular o fechamento do readline
+                const closeRLMock = jest.spyOn(rlWrapper, 'closeRL');
+                closeRLMock.mockImplementationOnce(() => {
+                    // Verifique se closeRL foi chamado corretamente
+                    expect(closeRLMock).toHaveBeenCalled();
+
+                    // Verifique se a mensagem de vitória para o jogador X foi impressa no console
+                    expect(console.log).toHaveBeenCalledWith('\n-> Parabéns, Jogador X! Você venceu com uma linha na diagonal!\n');
+
+                    done();
+                });
+
+                getPlayerMove(board);
+            });
+
+        })
+
+        describe('Player X wins with horizontal line', () => {
+
+            it('simulates user input and check for horizontal X victory', (done) => {
+                // Defina um mock para askQuestion para simular a entrada do usuário
+                const askQuestionMock = jest.spyOn(rlWrapper, 'askQuestion');
+                let userInputCounter = 0;
+
+                askQuestionMock.mockImplementation((question, callback) => {
+                    // Simule as entradas do usuário: 1 (X), 4(O), 2 (X), 5 (O), 3 (X)
+                    const userInput = ['1', '4', '2', '5', '3'];
+
+                    // Use o userInputCounter para obter a próxima entrada do usuário
+                    const userResponse = userInput[userInputCounter];
+                    userInputCounter++;
+
+                    callback(userResponse);
+                });
+
+                // Defina um mock para closeRL para simular o fechamento do readline
+                const closeRLMock = jest.spyOn(rlWrapper, 'closeRL');
+                closeRLMock.mockImplementationOnce(() => {
+                    // Verifique se closeRL foi chamado corretamente
+                    expect(closeRLMock).toHaveBeenCalled();
+
+                    // Verifique se a mensagem de vitória para o jogador X foi impressa no console
+                    expect(console.log).toHaveBeenCalledWith('\n-> Parabéns, Jogador X! Você venceu com uma linha na horizontal!\n');
+
+                    done();
+                });
+
+                getPlayerMove(board);
+            });
+
+        })
+
+        describe('Player X wins with vertical line', () => {
+
+            it('simulates user input and check for vertical X victory', (done) => {
+                // Defina um mock para askQuestion para simular a entrada do usuário
+                const askQuestionMock = jest.spyOn(rlWrapper, 'askQuestion');
+                let userInputCounter = 0;
+
+                askQuestionMock.mockImplementation((question, callback) => {
+                    // Simule as entradas do usuário: 1 (X), 2 (O), 4 (X), 5 (O), 7 (X)
+                    const userInput = ['1', '2', '4', '5', '7'];
+
+                    // Use o userInputCounter para obter a próxima entrada do usuário
+                    const userResponse = userInput[userInputCounter];
+                    userInputCounter++;
+
+                    callback(userResponse);
+                });
+
+                // Defina um mock para closeRL para simular o fechamento do readline
+                const closeRLMock = jest.spyOn(rlWrapper, 'closeRL');
+                closeRLMock.mockImplementationOnce(() => {
+                    // Verifique se closeRL foi chamado corretamente
+                    expect(closeRLMock).toHaveBeenCalled();
+
+                    // Verifique se a mensagem de vitória para o jogador X foi impressa no console
+                    expect(console.log).toHaveBeenCalledWith('\n-> Parabéns, Jogador X! Você venceu com uma linha na vertical!\n');
 
                     done();
                 });
@@ -146,7 +251,7 @@ describe('Tic-Tac-Toe Game', () => {
                     expect(closeRLMock).toHaveBeenCalled();
 
                     // Verifique se a mensagem de vitória para o jogador X foi impressa no console
-                    expect(console.log).toHaveBeenCalledWith('\n-> Parabéns, Jogador O! Você venceu!\n');
+                    expect(console.log).toHaveBeenCalledWith('\n-> Parabéns, Jogador O! Você venceu com uma linha na diagonal!\n');
 
                     done();
                 });
@@ -190,6 +295,7 @@ describe('Tic-Tac-Toe Game', () => {
             });
 
         })
+
     });
 
     afterEach(() => {
