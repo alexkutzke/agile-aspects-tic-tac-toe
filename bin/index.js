@@ -1,2 +1,6 @@
 #! /usr/bin/env node
-console.log("ola mundo");
+import { TicTacToe } from "./TicTacToe.js";
+
+let jogo =  new TicTacToe();
+
+jogo.iniciarJogo();
