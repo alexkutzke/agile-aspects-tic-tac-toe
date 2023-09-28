@@ -1,7 +1,7 @@
 const mockStdin = require('mock-stdin').stdin();
 
 const {
-    initializeBoard, getPlayerMove, validateMove, markBoard, checkTie, checkWinner, switchPlayer, rlWrapper
+    initializeBoard, getPlayerMove, validateMove, markBoard, checkTie, checkWinner, checkWinPosition, switchPlayer, rlWrapper
 } = require('./tic-tac-toe');
 
 describe('Tic-Tac-Toe Game', () => {
@@ -71,6 +71,23 @@ describe('Tic-Tac-Toe Game', () => {
             it('must return null for no winner', () => {
                 board = ['X', 'O', 'X', 'O', 'X', 'O', 'O', 'X', '0'];
                 expect(checkWinner(board)).toBeNull();
+            });
+        });
+
+        describe('checkWinPosition()', () => {
+            it('must return horizontal for winning line', () => {
+                let combination = [3, 4, 5];
+                expect(checkWinPosition(combination)).toBe('horizontal');
+            });
+
+            it('must return vertical for winning line', () => {
+                let combination = [0, 3, 6];
+                expect(checkWinPosition(combination)).toBe('vertical');
+            });
+
+            it('must return diagonal for winning line', () => {
+                let combination = [2, 4, 6];
+                expect(checkWinPosition(combination)).toBe('diagonal');
             });
         });
 
