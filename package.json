@@ -7,7 +7,7 @@
     "tictactoe": "./bin/index.js"  
   },
   "scripts": {
-    "tictactoe": "./bin/index.js",
+    "tictactoe": "node ./bin/index.js",
     "test": "jest"
   },
   "repository": {
