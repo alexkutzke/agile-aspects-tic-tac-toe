@@ -8,12 +8,6 @@ const rl = readline.createInterface({
 const PLAYER_X = 'X';
 const PLAYER_O = 'O';
 
-const winCombinations = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8],
-  [0, 3, 6], [1, 4, 7], [2, 5, 8],
-  [0, 4, 8], [2, 4, 6]
-];
-
 const rlWrapper = {
   askQuestion(question, callback) {
     rl.question(question, callback);
@@ -23,7 +17,8 @@ const rlWrapper = {
   },
 };
 
-var winPosition = '';
+let currentPlayer = PLAYER_X;
+let winPosition = '';
 
 function playGame(board) {
   printBoard(board);
@@ -85,6 +80,12 @@ function checkTie(board) {
 }
 
 function checkWinner(board) {
+  const winCombinations = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4, 6]
+  ];
+
   for (const combination of winCombinations) {
     const [a, b, c] = combination;
     if (board[a] === board[b] && board[b] === board[c]) {
@@ -96,27 +97,25 @@ function checkWinner(board) {
   return null;
 }
 
-function checkWinPosition(combination){
-  if(combination == winCombinations[0] || combination == winCombinations[1] || combination == winCombinations[2]){
+function checkWinPosition(combination) {
+  const horizontalCombos = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
+  const verticalCombos = [[0, 3, 6], [1, 4, 7], [2, 5, 8]];
+  const diagonalCombos = [[0, 4, 8], [2, 4, 6]];
+
+  if (horizontalCombos.some(row => row.every(pos => combination.includes(pos)))) {
     return 'horizontal';
-  }
-  if(combination === winCombinations[3] || combination === winCombinations[4] || combination === winCombinations[5]){
+  } else if (verticalCombos.some(column => column.every(pos => combination.includes(pos)))) {
     return 'vertical';
-  }
-  if(combination === winCombinations[6] || combination === winCombinations[7]){
+  } else if (diagonalCombos.some(diagonal => diagonal.every(pos => combination.includes(pos)))) {
     return 'diagonal';
   }
-};
+
+  return null;
+}
 
 function switchPlayer(currentPlayer) {
   return currentPlayer === PLAYER_X ? PLAYER_O : PLAYER_X;
 }
-
-let gameBoard = initializeBoard();
-let currentPlayer = PLAYER_X;
-
-console.log('\nBem-vindo(a) ao Jogo da Velha!');
-playGame(gameBoard);
 
 module.exports = {
   playGame,

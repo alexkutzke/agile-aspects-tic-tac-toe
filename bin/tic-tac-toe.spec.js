@@ -89,6 +89,11 @@ describe('Tic-Tac-Toe Game', () => {
                 let combination = [2, 4, 6];
                 expect(checkWinPosition(combination)).toBe('diagonal');
             });
+
+            it('must return null for no winning line', () => {
+                let combination = [1, 2, 3];
+                expect(checkWinPosition(combination)).toBeNull;
+            });
         });
 
         describe('switchPlayer()', () => {
@@ -136,10 +141,6 @@ describe('Tic-Tac-Toe Game', () => {
                 getPlayerMove(board);
             });
 
-        })
-
-        describe('Player X wins with diagonal line', () => {
-
             it('simulates user input and check for diagonal X victory', (done) => {
                 // Defina um mock para askQuestion para simular a entrada do usuário
                 const askQuestionMock = jest.spyOn(rlWrapper, 'askQuestion');
@@ -171,10 +172,6 @@ describe('Tic-Tac-Toe Game', () => {
                 getPlayerMove(board);
             });
 
-        })
-
-        describe('Player X wins with horizontal line', () => {
-
             it('simulates user input and check for horizontal X victory', (done) => {
                 // Defina um mock para askQuestion para simular a entrada do usuário
                 const askQuestionMock = jest.spyOn(rlWrapper, 'askQuestion');
@@ -205,10 +202,6 @@ describe('Tic-Tac-Toe Game', () => {
 
                 getPlayerMove(board);
             });
-
-        })
-
-        describe('Player X wins with vertical line', () => {
 
             it('simulates user input and check for vertical X victory', (done) => {
                 // Defina um mock para askQuestion para simular a entrada do usuário
