@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Especialização em Desenvolvimento Ágil de Software",
   "main": "bin/index.js",
-  "bin": {  
-    "tictactoe": "./bin/index.js"  
+  "bin": {
+    "tictactoe": "bin/index.js"
   },
   "scripts": {
     "tictactoe": "./bin/index.js",
@@ -29,5 +29,9 @@
       "^.+\\.[t|j]sx?$": "babel-jest"
     }
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  },
+  "keywords": []
 }
