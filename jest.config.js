@@ -1,1 +1,5 @@
-jest.config.js
+// jest.config.js
+
+module.exports = {
+  testEnvironment: 'node',
+};
