@@ -4,33 +4,4 @@ Setor de Educação Profissional e Tecnológica - SEPT
 
 Universidade Federal do Paraná - UFPR
 
----
-
-*Aspectos Ágeis de Programação*
-
-Prof. Alexander Robert Kutzke
-
-# Projeto Jogo da Velha com TDD
-
-Utilize a metodologia TDD para desenvolver um Jogo da Velha (Tic tac toe) **em modo texto**, na sequência, envie um *Pull Request* para este repositório.
-
-Esse projeto pode ser feito em duplas. Não esqueça de identificar os integrantes da dupla nos comentários do pull request. Apenas um precisa realizar o envio da tarefa.
-
-A interface do jogo é livre, mas deve ser em modo texto (terminal).
-
-Este repositório já está configurado para utilizar o framework [Jest](https://jestjs.io) com [Babel](https://babeljs.io).
-Além disso, o projeto pode ser executado com os seguintes comandos:
-
-```
-npm run tictactoe
-
-ou
-
-./bin/index.js
-```
-
-Caso tenha problemas, tente:
-
-```
-node ./bin/index.js
-```
+Cauê Veiga
