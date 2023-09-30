@@ -29,5 +29,8 @@
       "^.+\\.[t|j]sx?$": "babel-jest"
     }
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }
